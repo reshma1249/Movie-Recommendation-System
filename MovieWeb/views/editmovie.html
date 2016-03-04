@@ -1,0 +1,61 @@
+<div class="container" ng-controller="EditMovieController">
+    <h4 class="modal-title">Edit Movie</h4>
+    <hr />
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-lg-3 col-md-3 col-sm-3 control-label">Movie Name:</label>
+            <div class="col-lg-9 col-md-9 col-sm-9 ">
+                <input type="text" class="form-control" ng-model="name" ng-required="true">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 col-md-3 col-sm-3 control-label">Release Date:</label>
+            <div class="col-lg-9 col-md-9 col-sm-9 ">
+                <input type="date" class="form-control" ng-model="releaseDate" ng-required="true">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 col-md-3 col-sm-3 control-label">Description:</label>
+            <div class="col-lg-9 col-md-9 col-sm-9 ">
+                <textarea rows="5" class="form-control" ng-model="description" ng-required="true"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-3 col-md-3 col-sm-3 control-label" for="drops">Country:</label>
+            <div class="col-lg-9 col-md-9 col-sm-9 ">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {{selectedItem}}
+                        <span class="caret">
+                        </span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="a in countries">
+                            <a ng-click="dropboxitemselected(a)">
+                                {{a}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 col-md-3 col-sm-3 control-label">Genre</label>
+            <div class="col-lg-9 col-md-9 col-sm-9 row" style="padding-left:30px;">
+                <label ng-repeat="index in genres" style="padding-right:10px;">
+                    <input id="{{index.name}}" type="checkbox" value="{{index.name}}" ng-checked="selection.indexOf(index.name) > -1" ng-click="toggleSelection(index.name)" />
+                    <label for="{{index.name}}">{{index.name}}</label>
+
+                </label>
+            </div>
+        </div>
+        <hr />
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary" ng-click="editMovie()">Update Movie</button>
+        </div>
+        <div ng-bind="message">
+
+        </div>
+    </form>
+</div>

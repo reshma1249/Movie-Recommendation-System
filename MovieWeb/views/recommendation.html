@@ -1,0 +1,52 @@
+﻿<div class="container" ng-controller="RecommendationController">
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Movie List</h3>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr class="filters">
+                        <th><input type="text" class="form-control" ng-model="search.ID"  placeholder="Movie ID"></th>
+                        <th></th>
+                        <th><input type="text" class="form-control" ng-model="search.Name"  placeholder="Title"></th>
+                        <th></th>
+                        <th><input type="text" class="form-control" ng-model="search.Genre"  placeholder="Genre"></th>
+                        <th><input type="text" class="form-control" ng-model="search.AvgRatings"  placeholder="Average Rating" disabled></th>
+                        <th><input type="text" class="form-control" ng-model="search.Country" placeholder="Country"></th>
+                        <th>Rate Movies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="movie in movies | filter:search | startFrom: startingItem() | limitTo: itemsPerPage">
+                        <td>{{movie.ID}}</td>
+                        <td>
+                            <a href="#/ratings">
+                                <img src="../img/moviePosters/{{movie.ID}}.jpg" style="width:200px; height:150px; cursor:pointer;" ng-click="rateMovies(movie)">
+                            </a>
+                        </td>
+                        <td>{{movie.Name}}</td>
+                        <td>{{movie.ReleaseDate | date:'MM/dd/yyyy'}}</td>
+                        <td>{{movie.Genre}}</td>
+                        <td> <span ng-if="movie.AvgRating != 0"> {{movie.AvgRating}} </span>
+                            <span ng-if="movie.AvgRating == 0" title="This movie had not been rated yet."> {{movie.AvgRating}} </span>
+                        </td>
+                        <td>{{movie.Country}}</td>
+                        <td class="center-block row" style="min-width:100px">
+                            <a style="padding-left:10px;cursor:pointer;" href="#/ratings" title="Rate This Movie" ng-click="rateMovies(movie)">
+                                <i class="fa fa-star-half-o"></i>
+                            </a>
+                            <a style="padding-left:10px;cursor:pointer;" ng-show="showInfo()" href="#/editmovie" title="Edit Movie" ng-click="editMovie(movie)">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </a>
+                            <a style="padding-left:10px;cursor:pointer;" ng-show="showInfo()" title="Delete Movie" ng-click="deleteMovie(movie)">
+                                <i class="fa fa-times-circle-o"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>           
+        </div>
+    </div>
+</div>
+

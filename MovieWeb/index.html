@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html ng-app="MovieApp">
+<head>
+
+    <title>Movie Recommendation</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap Core CSS -->
+    <link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/login.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="libs/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="css/home.css" rel="stylesheet">
+</head>
+
+<body ng-controller="mainController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <strong>Hi {{userName}} </strong>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/account">Account</a></li>
+                            <li><a href="#/logic">About</a></li>
+                            <li><a ng-click="logout()">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+
+        <div class="topnav" >
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand topnav" href="#/home"><b>Home</b></a>
+
+                <a class="navbar-brand topnav" ng-show="showInfo()" href="#/addmovie"><b>Add Movie</b></a>
+                <a class="navbar-brand topnav" href="#/collection"><b>My Movie Collection</b></a>
+                <a class="navbar-brand topnav" href="#/movielist" ng-click="movieList()"><b>Movie List</b></a>
+                <a class="navbar-brand topnav" href="#/recommendation"><b>Movie Recommendation</b></a>
+            </div>
+
+
+        </div>
+    </nav>
+
+
+    <div id="main" style="padding-top: 120px;">
+
+        <div ng-view></div>
+
+    </div>
+    <!--Delete Movie Pop Up -->
+    <script type="text/ng-template" id="deleteMovie.html" ng-controller="DeleteMovieController">
+        <div class="container" style="width: inherit !important">
+            <h4> Delete Movie</h4>
+            <hr />
+            <form role="form">
+                <div class="form-group">
+                    <label>Are you sure you want to delete this movie?</label>
+                </div>
+                <hr />
+                <div class="form-group pull-right">
+                    <button type="button" class="btn btn-default" ng-click="cancel()">Back</button>
+                    <button type="button" class="btn btn-default" ng-click="cancel()">No</button>
+                    <button type="submit" class="btn btn-primary" ng-click="deletemovie()">Yes</button>
+                </div>
+                <div ng-bind="message">
+
+                </div>
+            </form>
+        </div>
+    </script>
+    <script src="libs/jquery-1.10.2/jquery-1.10.2.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- Angular JavaScript -->
+    <script src="libs/angular-1.4.7/angular.min.js"></script>
+    <script src="libs/angular-1.4.7/angular-route.min.js"></script>
+    <script src="libs/angular-1.4.7/ui-bootstrap-tpls-0.14.2.min.js"></script>
+    <script src="libs/angular-1.4.7/angular-animate.min.js"></script>
+    <script src="libs/angular-1.4.7/angular-resource.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/controller.js"></script>
+
+
+</body>
+
+</html>
